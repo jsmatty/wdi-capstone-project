@@ -1,0 +1,2 @@
+class UtilityBill < ApplicationRecord
+end
