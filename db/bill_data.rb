@@ -1,5 +1,5 @@
-def get_utility_bill_data
-  utility_bill_data = {
+def get_bill_data
+  bill_data = {
     'water' => {
       type: 'water',
       company: 'Atlanta Watershed',
@@ -38,5 +38,5 @@ def get_utility_bill_data
 
     }
   }
-  utility_bill_data
+  bill_data
 end

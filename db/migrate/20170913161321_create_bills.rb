@@ -1,6 +1,6 @@
-class CreateUtilityBills < ActiveRecord::Migration[5.1]
+class CreateBills < ActiveRecord::Migration[5.1]
   def change
-    create_table :utility_bills do |t|
+    create_table :bills do |t|
       t.string :type
       t.string :company
       t.string :company_address
@@ -9,6 +9,7 @@ class CreateUtilityBills < ActiveRecord::Migration[5.1]
       t.string :name_on_account
       t.string :email_on_account
       t.string :household_address
+      t.references :user, foreign_key: true
 
       t.timestamps
     end

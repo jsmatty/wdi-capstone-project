@@ -9,6 +9,7 @@ one:
   name_on_account: MyString
   email_on_account: MyString
   household_address: MyString
+  user: one
 
 two:
   type: 
@@ -19,3 +20,4 @@ two:
   name_on_account: MyString
   email_on_account: MyString
   household_address: MyString
+  user: two
