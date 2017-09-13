@@ -1,32 +1,29 @@
 import React, { Component } from 'react'
 
+import React, { Component } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import DeleteBill from './DeleteBill'
 
-class Bill extends Component{
+import BillFormEdit from './BillFormEdit';
+
+
+class Bill extends Component {
   constructor(){
     super();
     this.state = {
-      bill: []
+      bills: [],
     }
   }
 
-  componentWillMount(){
-    this._fetchBills();
-  }
+ componentWillMount() {
+   const billId = this.props.match.params.id;
+   this.fetchBills(billId)
+ }
 
-  _fetchBill = async () => {
-    const id = this.props.match.params.id;
-    const res = await axios.get(`/api/bills/${id}`)
-    this.setState({
-      bill: res.data.bill
-    })
-  }
-
-  render(){
-    return (
-      <BillStyles>
-        <h3>{this.state.bill.type}</h3>
-        <h1>{this.state.}
-      </BillStyles>
-    )
-  }
+ _fetchBills = async (billId) => {
+   try {
+     const response = await axios.get(`/api/bills/`)
+   }
+ }
 }

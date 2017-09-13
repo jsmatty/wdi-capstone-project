@@ -36,7 +36,7 @@ class AllBills extends Component {
     return (
       <div>
         <h1>Bills</h1>
-        {this.state.bills.map(anime => (
+        {this.state.bills.map(bill => (
           <div key={bill.id}>
             <Link to={`/bill/${bill.id}`}>{bill.type}</Link> 
           </div>
