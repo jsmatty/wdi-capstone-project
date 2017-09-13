@@ -1,7 +1,26 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require_relative './utility_bill_data.rb'
+
+
+UtilityBill.destroy_all
+
+
+utility_bill_data = get_song_data
+
+
+utility_bill_data.each_pair do |utility_bill_type, utility_bill|
+  info = utility_bill_data[utility_bill_type]
+  current_utility_bill = UtilityBill.create!({
+    type:         info[:type],
+  })
+
+  utility_bills.each do |utility_bill|
+    UtilityBill.create!({
+      type:                   current_utility_bill[:type],
+      company:                utility_bill[:compant],
+      company_phone_number:   utility_bill[:company_phone_number],
+      account_number:         utility_bill[:account_number],
+      name_on_account:        utility_bill[:name_on_account],
+      email_on_account:       utility_bill[:email_on_account]
+    })
+  end
+end
