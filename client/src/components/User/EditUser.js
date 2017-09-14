@@ -75,6 +75,10 @@ class EditUser extends Component {
                         <label htmlFor="phonenumber">phone number: </label>
                         <input onChange={this._handleChange} type="text" name="phonenumber" value={this.state.user.phonenumber} />
                     </div>
+                    <div>
+                        <label htmlFor="birthday">birthday: </label>
+                        <input onChange={this._handleChange} type="text" name="birthday" value={this.state.user.birthday} />
+                    </div>
                     <button onClick={this._editUser}>Submit</button>
                 </form>
                 <br />
