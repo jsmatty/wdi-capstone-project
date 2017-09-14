@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-const TeacherStyles = styled.div`
+const UserStyles = styled.div`
   width: 30%;
   margin: 20px 0; 
   box-shadow: 1px 1px 5px black;
@@ -15,16 +15,16 @@ const TeacherStyles = styled.div`
   }
 `;
 
-const TeacherCard = (props) => {
-  const teacher = props.teacher;
+const UserCard = (props) => {
+  const user = props.user;
   return (
-    <TeacherStyles>
-      <Link to={`/teacher/${teacher.id}`}>
-        <img src={teacher.image} alt={teacher.name} />
-        <h3>{teacher.name}</h3>
+    <UserStyles>
+      <Link to={`/user/${user.id}`}>
+        <img src={user.image} alt={user.name} />
+        <h3>{user.name}</h3>
       </Link>
-    </TeacherStyles>
+    </UserStyles>
   );
 };
 
-export default TeacherCard;
+export default UserCard;

@@ -1,90 +1,56 @@
-import React, { Component } from 'react'
-import {Link, Redirect} from 'react-router-dom'
-import axios from 'axios'
-import styled from 'styled-components'
-
-
-const UserProfileStyles = styled.div`
-  img {
-    max-height: 400px;
-    width: 100%;
-  }
-`;
+import React, { Component } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 class UserProfile extends Component {
-  constructor(){
-      super();
-      this.state = {
-          user: {
-            image: '',
-            name: '',
-            username: '',
-            email: '',
-            phonenumber: '',
-            birthday: '',
-          },
-          redirect: false
-      };
-  }
+    constructor(){
+        super()
+        this.state = {
+            user: {}
+        }
+    }
 
-componentWillMount(){
-     const userId = this.props.match.params.id;
-        this._fetchUsers(UserId)
-  }
+    componentWillMount() {
+        const userId = this.props.match.params.id;
+        this._fetchUsers(userId)
+    }
 
-  _fetchUsers = async () => {
-      try {
-          const id = this.props.match.params.id;
-          const res = await axios.get(`/api/users/${userId}`)
-          await this.setState({bill});
+     _fetchUsers = async (userId) => {
+        try {
+            const response = await axios.get(`/api/users/${userId}`)
+            console.log(response.data)
+            const user = response.data
+            await this.setState({ user});
             return response.data;
-          }
-        
-          catch (err) {
+        }
+        catch (err) {
             await this.setState({error: err.message})
             return err.message
-      }
-  }
-  _deleteUser = async (e) => {
-      e.preventDefault();
-      try {
-          const res = await axios.delete(`/api/users/${this.props.match.params.id}`)
-          this.setState({redirect: true})
-          return res.data
-          
-
-      } catch(err) {
-          console.log(err)
-      }
-  }
-  render() {
-    return (
-      <div>
-        {this.state.redirect 
-        ? 
-            <Redirect to={'/'} />
-        :
-
-
-            <div>
-            <UserProfileStyles>
-            <img src={this.state.user.image} />
-            <h1><strong>Name: </strong> {this.state.user.name}</h1>
-            <p><strong>Username: </strong> {this.state.user.username}</p>
-            <p><strong>Email: </strong> {this.state.user.email}</p>
-            <p><strong>Phone Number: </strong> {this.state.user.phonenumber}</p>
-            <p><strong>Birthday: </strong> {this.state.user.birthday}</p>
-            
-            <Link to={`/users/${this.props.match.params.id}/edit`}><button>Edit user</button></Link>
-            <button onClick={this._deleteuser}>Delete This user</button>
-            </UserProfileStyles>
-      </div>
-
+        }
+        
     }
-    </div>
-    )
-  }
-}
+    
 
-export default UserProfile;
+    render () {
+        const imageStyles = {
+            width: "300",
+            height: "300"
+        }
+        const id = this.props.match.params.id            
+        return (
+            <div>
+            <img style={imageStyles} src={this.state.user.image} alt=''/>
+            <h1>{this.state.user.name}</h1>
+            <h3>Age: {this.state.user.age}</h3>
+            <h3>Height: {this.state.user.height}ft</h3>
+            <h3>Gender: {this.state.user.gender}</h3>
+            <h3>Body Type: {this.state.user.body_type}</h3>
+            <h3>Linked In: <a href={this.state.user.linked_in}>{this.state.user.linked_in}</a></h3>
+            <h3>Bio: {this.state.user.bio}</h3>
+            
+                
+            </div>
+        )
+    }
+}

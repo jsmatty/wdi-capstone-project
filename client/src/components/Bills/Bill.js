@@ -20,7 +20,7 @@ class Bill extends Component {
 
      _fetchBills = async (billId) => {
         try {
-            const response = await axios.get(`/api/bills/${billId}`)
+            const response = await axios.get(`/api/household/:household_id/bills/bill/${bill.id}`)
             console.log(response.data)
             const bill = response.data
             await this.setState({bill});
@@ -31,18 +31,10 @@ class Bill extends Component {
             return err.message
         }
     }
-    render() {  
+    rrender() {
+        const id = this.props.match.params.id    
         return (
-            <div>
-              {this.state.redirect
-              ?
-                <Redirect to ={'/'} />
-              :
-
-
-              
-            
-        <div>
+         <div>
             <h1>Utility Type: {this.state.bill.type}</h1>
             <h3>Company: {this.state.bill.company}</h3>
             <h3>Company Phone Number: {this.state.bill.company_phone_number}ft</h3>
@@ -50,13 +42,11 @@ class Bill extends Component {
             <h3>Name on Account: {this.state.bill.name_on_account}</h3>
             <h3>Email on Account: <a href={this.state.bill.email_on_account}>{this.state.bill.linked_in}</a></h3>
             <h3>Current Address: {this.state.bill.household_address}</h3>
-            <Link to={`/bills/${this.props.match.params.id}/edit`}><button>Edit Bill</button></Link>
+           <br/>
+            <Link to={`./bills/bill/${id}/edit`}><button>Edit Bill</button></Link>
         </div> 
-              
-              }
-             
-              
-            </div>
+            
+    
         )
     }
 }

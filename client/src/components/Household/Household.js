@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import UserCard from './UserCard';
+import UserCard from '/components/User/UserCard';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom'
 
@@ -39,7 +39,7 @@ class Household extends Component{
     return (
       <HouseholdStyles>
         {this.state.users.map((user) => (
-            <userCard key={user.id} user={user} />
+            <UserCard key={user.id} user={user} />
         ))}
         <Link to={`/users/new`}><button>Add a New Mate</button></Link>
         {/*find user by username*/}
