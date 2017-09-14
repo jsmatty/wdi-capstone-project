@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import UserCard from '/components/User/UserCard';
+import UserCard from '../User/UserCard';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom'
 

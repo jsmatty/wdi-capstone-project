@@ -25,7 +25,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <GlobalNav />
+          <GlobalNav/>
         <Route exact path='/' component={SplashPage} />
         <Route exact path="/signup" component={SignUp}/>
         <Route exact path="/signin" component={SignIn}/>

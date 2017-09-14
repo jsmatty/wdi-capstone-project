@@ -19,7 +19,7 @@ const UserCard = (props) => {
   const user = props.user;
   return (
     <UserStyles>
-      <Link to={`/user/${user.id}`}>
+      <Link to={`/household/:household_id/users/:id`}>
         <img src={user.image} alt={user.name} />
         <h3>{user.name}</h3>
       </Link>
