@@ -6,7 +6,7 @@ class SignUp extends Component {
  constructor(){
    super();
    this.state = {
-       email: '',
+        email: '',
        password: '',
        password_confirmation: '',
        redirect: false
@@ -19,7 +19,13 @@ class SignUp extends Component {
  }
  _handleSubmit = (e) => {
   e.preventDefault();
-  axios.post("/auth", this.state).then((res) => {
+  const payload = {
+      email: this.state.email,
+      password: this.state.password,
+      password_confirmation: this.state.password_confirmation
+  }
+  console.log(payload)
+  axios.post("/auth", payload).then((res) => {
 
       console.log("Success!");
   })
@@ -47,28 +53,16 @@ class SignUp extends Component {
      <div>
                 <form>
                     <div>
-                        <label htmlFor="image">image: </label>
-                        <input onChange={this._handleChange} type="text" name="image" value={this.state.user.image} />
-                    </div>
-                    <div>
-                        <label htmlFor="name">name: </label>
-                        <input onChange={this._handleChange} type="text" name="name" value={this.state.user.name} />
-                    </div>
-                    <div>
-                        <label htmlFor="username">username: </label>
-                        <input onChange={this._handleChange} type="text" name="username" value={this.state.user.username} />
-                    </div>
-                    <div>
                         <label htmlFor="email">email: </label>
-                        <input onChange={this._handleChange} type="text" name="email" value={this.state.user.email} />
+                        <input onChange={this._handleChange} type="text" name="email" value={this.state.email} />
                     </div>
                     <div>
-                        <label htmlFor="phonenumber">phone number: </label>
-                        <input onChange={this._handleChange} type="text" name="phonenumber" value={this.state.user.phonenumber} />
+                        <label htmlFor="password">password: </label>
+                        <input onChange={this._handleChange} type="text" name="password" value={this.state.password} />
                     </div>
                     <div>
-                        <label htmlFor="birthday">birthday: </label>
-                        <input onChange={this._handleChange} type="text" name="birthday" value={this.state.user.birthday} />
+                        <label htmlFor="password_confirmation">password confirmation: </label>
+                        <input onChange={this._handleChange} type="text" name="password_confirmation" value={this.state.password_confirmation} />
                     </div>
                     <button onClick={this._handleSubmit}>Submit</button>
                 </form>

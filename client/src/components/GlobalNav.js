@@ -1,86 +1,80 @@
-import React from "react";
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
+import axios from "axios";
+import styled from "styled-components";
 
 const Nav = styled.div`
-font-family: 'Fredericka the Great', cursive;
-  width: 95%;  
+  width: 95%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 2.5%;
-  background-color: rgb(230, 243, 255);
+  background-color: rgba(2, 178, 208, 1);
   box-shadow: 0px 1px 6px black;
-  a{
+  a {
     text-decoration: none;
     margin: 0 5px;
-    &:visited{
+    &:visited {
       color: white;
     }
   }
-`
+`;
 
 class GlobalNav extends Component {
   constructor() {
     super();
     this.state = {
-      user:{},
-      signedIn: false
-      };
-    }
-
-    componentWillMount() {
-      this._isSignedIn();
-    }
-
-    componentWillRecieveProps() {
-      this._isSignedIn();
-    }
-
-    _isSignedIn = async () => {
-      const response = await axios.get("/auth/validate_token");
-      this.setState({
-        user: response.data.data,
-        signedIn: response.data.success
-      });
+      user: {},
+      loggedIn: false
     };
+  }
 
-    _logOut = async () => {
-      const response = await axios.delete("/auth/sign_out")
-      // need browser to refresh and take user back to splash page
-      window.location.reload("/");
-    };
+  componentWillMount() {
+    this._isLoggedIn();
+  }
+  componentWillReceiveProps() {
+    this._isLoggedIn();
+  }
 
-  render() {  
-  if(this.state.signedIn) {
+  _isLoggedIn = async () => {
+    const response = await axios.get("/auth/validate_token");
+    this.setState({
+      user: response.data.data,
+      loggedIn: response.data.success
+    });
+  };
+  
+  _logOut = async () => {
+    console.log("CLICK");
+    const response = await axios.delete("/auth/sign_out");
+    //Forces refresh of browser
+    window.location.reload();
+  };
+
+  render() {
+    if (this.state.loggedIn) {
+      return (
+        <Nav>
+          <Link to="/">
+            <h1>Tunr</h1>
+          </Link>
+          <div>
+            <span>Signed In As: {this.state.user.email}</span>
+            <a href="#" onClick={this._logOut}> Log Out </a>
+          </div>
+        </Nav>
+      );
+    }
     return (
       <Nav>
-        <Link to="/household">
-        <h1>PM</h1>
-      </Link>
-      <div>
-        <span>Welcome {this.state.user.name}</span>
-      </div> 
-      <div> 
-        {/*dropdown*/}
-        <Link to="/household/:household_id/users/:id">Profile</Link>
-        <Link to="/household/:id/AllBills">Bills</Link>
-        <Link to="/auth/sign_out">Log Out</Link>
-      </div>
+        <Link to="/">
+          <h1>Tunr</h1>
+        </Link>
+        <div>
+          <Link to="/signup">Sign Up</Link>
+          <Link to="/signin">Log In</Link>
+        </div>
       </Nav>
-    );
-  
-  } 
-  return (
-    <Nav>
-      <Link to="/">
-        <h1>PM</h1>
-      </Link>
-      <div>
-        <Link to="/auth/sign_in">Log In</Link>
-        <Link to="/auth/sign_up">Sign Up</Link>
-      </div>
-    </Nav>
     );
   }
 }
