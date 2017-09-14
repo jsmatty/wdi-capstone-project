@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   namespace :api do
     resources :household do
         resources :users
+        resources :bills
+      end
     end
   end
-  resources :bills
-end
+ 
