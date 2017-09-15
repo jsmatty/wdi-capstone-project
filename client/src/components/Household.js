@@ -2,13 +2,25 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import UserCard from './UserCard'
+import styled from "styled-components";
 // export {AllUsers, EditUser, UserProfile} from './components/User';
 
 
-// const ImageStyles = styled.div`
-// width: "300",
-// height: "300"
-//  `;
+const HouseholdPageStyle = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+height: 100vh;
+width: 100%;
+background-image: url("https://i.imgur.com/DarybSb.jpg?1");
+background-size: cover;
+min-height: 100%;
+min-width: 1024px;
+position: fixed;
+top: 0;
+left: 0;
+
+}`
 
 class Household extends Component {
   constructor(){
@@ -35,6 +47,7 @@ class Household extends Component {
 
     render () {
          return (
+           <HouseholdPageStyle>
              <div>
                  {this.state.users.map(users => (
                    <div key={users.id}>
@@ -42,6 +55,7 @@ class Household extends Component {
               </div>      
                  ))}
                   </div>
+                  </HouseholdPageStyle>
          )
        }
      }

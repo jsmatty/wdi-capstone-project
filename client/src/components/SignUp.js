@@ -2,6 +2,35 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { setAxiosHeaders } from '../util';
+import styled from "styled-components";
+
+const SignUpPageStyles = styled.div`
+
+display: flex;
+width: 100%;
+height: 100vh;
+background-color: #692a80;
+background-size: cover;
+justify-content: center;
+align-items: center;
+ 
+ `;
+
+const SignUpContainer = styled.div`
+  background: black;
+  padding: 60px;
+  border: 5px solid white;
+
+`;
+
+const InputGroup = styled.div`
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 15px;
+  
+ 
+  
+`;
 
 class SignUp extends Component {
  constructor(){
@@ -60,11 +89,14 @@ class SignUp extends Component {
      return <Redirect to="/users/:id" />
    }
    return (
+       <SignUpPageStyles>
      <div>
+         <SignUpContainer>
                 <form>
+                    <InputGroup>
                     <div>
                         <label htmlFor="email">email: </label>
-                        <input onChange={this._handleChange} type="text" name="email" value={this.state.email} />
+                        <input class="InputField" onChange={this._handleChange} type="text" name="email" value={this.state.email} />
                     </div>
                     <div>
                         <label htmlFor="password">password: </label>
@@ -87,9 +119,12 @@ class SignUp extends Component {
                         <input onChange={this._handleChange} type="text" name="birthday" value={this.state.birthday} />
                     </div>
                     <button onClick={this._handleSubmit}>Submit</button>
+               </InputGroup>
                 </form>
                 <br />
+                </SignUpContainer>
             </div>
+            </SignUpPageStyles>
    );
  }
 }
