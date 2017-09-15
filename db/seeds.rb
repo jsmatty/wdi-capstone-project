@@ -24,3 +24,9 @@
 #     })
 #   end
 # end
+
+jess = User.new
+jess.email = 'bob@gmail.com'
+jess.password = 'password'
+jess.password_confirmation = 'password'
+jess.save
