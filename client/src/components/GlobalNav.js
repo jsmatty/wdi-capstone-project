@@ -4,13 +4,13 @@ import axios from "axios";
 import styled from "styled-components";
 
 const Nav = styled.div`
-font-family: 'Fredericka the Great', cursive;
-  width: 95%;  
+font-family: 'Quicksand', sans-serif;
+  width: 100%;  
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 2.5%;
-  background-color: rgb(230, 243, 255);
+  background-color: #b9423c;
   box-shadow: 0px 1px 6px black;
   a{
     text-decoration: none;
@@ -75,11 +75,12 @@ class GlobalNav extends Component {
   return (
     <Nav>
       <Link to="/">
-        <h1>PM</h1>
+        <h1>P/M</h1>
       </Link>
       <div>
         <Link to="/signin">Log In</Link>
         <Link to="/signup">Sign Up</Link>
+        
       </div>
     </Nav>
     );

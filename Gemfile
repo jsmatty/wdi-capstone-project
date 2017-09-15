@@ -44,3 +44,4 @@ gem 'devise'
 gem 'omniauth'
 gem 'devise_token_auth'
 gem 'simple_form'
+
