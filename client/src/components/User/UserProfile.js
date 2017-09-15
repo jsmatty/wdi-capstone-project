@@ -42,14 +42,9 @@ class UserProfile extends Component {
             <div>
             <img style={imageStyles} src={this.state.user.image} alt=''/>
             <h1>{this.state.user.name}</h1>
-            <h3>Age: {this.state.user.age}</h3>
-            <h3>Height: {this.state.user.height}ft</h3>
-            <h3>Gender: {this.state.user.gender}</h3>
-            <h3>Body Type: {this.state.user.body_type}</h3>
-            <h3>Linked In: <a href={this.state.user.linked_in}>{this.state.user.linked_in}</a></h3>
-            <h3>Bio: {this.state.user.bio}</h3>
-            
-                
+            <h3>Email: {this.state.user.email}</h3>
+            <h3>Birthday: {this.state.user.birthday}</h3>
+            <button><Link to="/household/:household_id">HouseHold</Link></button>
             </div>
         )
     }

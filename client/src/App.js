@@ -11,12 +11,17 @@ import Bill from './components/Bills/Bill';
 import EditBill from './components/Bills/EditBill';
 import UserProfile from './components/User/UserProfile';
 import EditUser from './components/User/EditUser'
-
+import { setAxiosDefaults } from './util';
 
 // import { setAxiosDefaults } from './util';
 
 
+
+
 class App extends Component {
+  componentWillMount(){
+    setAxiosDefaults();
+  }
   // componentWillMount(){
   //   setAxiosDefaults();
   // }
@@ -29,13 +34,13 @@ class App extends Component {
         <Route exact path='/' component={SplashPage} />
         <Route exact path="/signup" component={SignUp}/>
         <Route exact path="/signin" component={SignIn}/>
-        <Route exact path="/household/household" component={Household}/>
+        <Route exact path="/household/:household_id" component={Household}/>
         <Route exact path="/household/:id/AllBills" component={AllBills}/>
         <Route exact path="/household/:household_id/bills" component={NewBill} />
         <Route exact path="/household/:id/AllBills/:id" component={Bill}/>
         <Route exact path="/household/:household_id/bills/:id" component={EditBill}/>
-        <Route exact path="/household/:household_id/users/:id" component={UserProfile}/>
-        <Route exact path="/household/:household_id/users/:id" component={EditUser}/>
+        <Route exact path="/users/:id" component={UserProfile}/>
+        <Route exact path="/users/:id/edit" component={EditUser}/>
 
         </div>
       </Router>

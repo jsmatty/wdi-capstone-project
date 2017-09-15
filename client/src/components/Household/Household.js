@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import UserCard from '../User/UserCard';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom'
+
 
 const HouseholdStyles = styled.div`
   margin: 20px 5%;
@@ -29,26 +29,34 @@ class Household extends Component{
     try {
       const response = await axios.get('/api/users');
       const users = response.data;
-      this.setState({users});
-    } catch (err) {
-      this.setState({error: err})
-    }
+      this.setState({Users: response.data});
+     } 
+
+     catch (err) {
+           console.log(err)
+           await this.setState({error: err.message})
+           return err.message
+       }
   }
 
-  render(){
-    return (
-      <HouseholdStyles>
-        {this.state.users.map((user) => (
-            <UserCard key={user.id} user={user} />
-        ))}
-        <Link to={`/users/new`}><button>Add a New Mate</button></Link>
-        {/*find user by username*/}
-        <Link to={'/bill/all'}><button>Utility Bills</button></Link>
-      </HouseholdStyles>
-      
-    )
-  }
-}
-// add link button to BILL index page
+    render () {
+         if (this.state.error){
+             return <div>{this.state.error}</div>
+           }
+           const imageStyles = {
+             width: "300",
+             height: "300"
+         }
+         return (
+             <div>
+                 {this.state.users.map(user => (
+                     <div>
+                         <Link to={`/user/${user.id}`}><img style={imageStyles} src={user.image} alt=''/></Link> 
+                    </div>
+                 ))}
+             </div>
+         )
+     }
+ }
 
 export default Household;

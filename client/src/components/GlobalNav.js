@@ -60,13 +60,13 @@ class GlobalNav extends Component {
         <h1>PM</h1>
       </Link>
       <div>
-        <span>Welcome {this.state.user.name}</span>
+        <span>Signed In As: <Link to={`/user/${this.state.user.id}`}>{this.state.user.email}</Link></span>
+          <a href="#" onClick={this._logOut}> Log Out </a>
       </div> 
       <div> 
         {/*dropdown*/}
         <Link to="/household/:household_id/users/:id">Profile</Link>
         <Link to="/household/:id/AllBills">Bills</Link>
-        <a href="#" onClick={this._logOut}> Log Out </a>
       </div>
       </Nav>
     );

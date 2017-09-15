@@ -34,7 +34,7 @@ _signIn = async (e) => {
 
  render() {
    if (this.state.redirect){
-     return <Redirect to="/household" />
+     return <Redirect to="/users/:id" />
    }
    return (
     <div>

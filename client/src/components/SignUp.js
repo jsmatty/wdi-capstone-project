@@ -10,6 +10,9 @@ class SignUp extends Component {
         email: '',
        password: '',
        password_confirmation: '',
+       birthday: '',
+       name: '',
+       image: '',
        redirect: false
    }
  }
@@ -23,7 +26,10 @@ class SignUp extends Component {
   const payload = {
       email: this.state.email,
       password: this.state.password,
-      password_confirmation: this.state.password_confirmation
+      password_confirmation: this.state.password_confirmation,
+      birthday: this.state.birthday,
+      name: this.state.name,
+      image: this.state.image
   }
   console.log(payload)
   axios.post("/auth", payload).then((res) => {
@@ -67,6 +73,18 @@ class SignUp extends Component {
                     <div>
                         <label htmlFor="password_confirmation">password confirmation: </label>
                         <input onChange={this._handleChange} type="text" name="password_confirmation" value={this.state.password_confirmation} />
+                    </div>
+                    <div>
+                        <label htmlFor="name">Name: </label>
+                        <input onChange={this._handleChange} type="text" name="name" value={this.state.name} />
+                    </div>
+                    <div>
+                        <label htmlFor="image">profile picture: </label>
+                        <input onChange={this._handleChange} type="text" name="image" value={this.state.image} />
+                    </div>
+                    <div>
+                        <label htmlFor="birthday">birthday: </label>
+                        <input onChange={this._handleChange} type="text" name="birthday" value={this.state.birthday} />
                     </div>
                     <button onClick={this._handleSubmit}>Submit</button>
                 </form>
