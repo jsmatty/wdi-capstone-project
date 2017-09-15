@@ -30,10 +30,10 @@ class GlobalNav extends Component {
   }
 
   componentWillMount() {
-    this._isLoggedIn();
+    // this._isLoggedIn();
   }
   componentWillReceiveProps() {
-    this._isLoggedIn();
+    // this._isLoggedIn();
   }
 
   _isLoggedIn = async () => {
