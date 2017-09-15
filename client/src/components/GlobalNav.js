@@ -4,40 +4,42 @@ import axios from "axios";
 import styled from "styled-components";
 
 const Nav = styled.div`
-  width: 95%;
+font-family: 'Fredericka the Great', cursive;
+  width: 95%;  
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 2.5%;
-  background-color: rgba(2, 178, 208, 1);
+  background-color: rgb(230, 243, 255);
   box-shadow: 0px 1px 6px black;
-  a {
+  a{
     text-decoration: none;
     margin: 0 5px;
-    &:visited {
+    &:visited{
       color: white;
     }
   }
-`;
+`
 
 class GlobalNav extends Component {
   constructor() {
     super();
     this.state = {
-      user: {},
-      loggedIn: false
-    };
-  }
+      user:{},
+      signedIn: false
+      };
+    }
 
   componentWillMount() {
-    // this._isLoggedIn();
+    this._isLoggedIn();
   }
   componentWillReceiveProps() {
-    // this._isLoggedIn();
+    this._isLoggedIn();
   }
 
   _isLoggedIn = async () => {
     const response = await axios.get("/auth/validate_token");
+    console.log(response)
     this.setState({
       user: response.data.data,
       loggedIn: response.data.success
@@ -50,31 +52,36 @@ class GlobalNav extends Component {
     //Forces refresh of browser
     window.location.reload();
   };
-
-  render() {
-    if (this.state.loggedIn) {
-      return (
-        <Nav>
-          <Link to="/">
-            <h1>Tunr</h1>
-          </Link>
-          <div>
-            <span>Signed In As: {this.state.user.email}</span>
-            <a href="#" onClick={this._logOut}> Log Out </a>
-          </div>
-        </Nav>
-      );
-    }
+  render() {  
+  if(this.state.signedIn) {
     return (
       <Nav>
-        <Link to="/">
-          <h1>Tunr</h1>
-        </Link>
-        <div>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/signin">Log In</Link>
-        </div>
+        <Link to="/household">
+        <h1>PM</h1>
+      </Link>
+      <div>
+        <span>Welcome {this.state.user.name}</span>
+      </div> 
+      <div> 
+        {/*dropdown*/}
+        <Link to="/household/:household_id/users/:id">Profile</Link>
+        <Link to="/household/:id/AllBills">Bills</Link>
+        <a href="#" onClick={this._logOut}> Log Out </a>
+      </div>
       </Nav>
+    );
+  
+  } 
+  return (
+    <Nav>
+      <Link to="/">
+        <h1>PM</h1>
+      </Link>
+      <div>
+        <Link to="/signin">Log In</Link>
+        <Link to="/signup">Sign Up</Link>
+      </div>
+    </Nav>
     );
   }
 }

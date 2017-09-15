@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+import { setAxiosHeaders } from '../util';
 
 class SignUp extends Component {
  constructor(){
@@ -28,6 +29,9 @@ class SignUp extends Component {
   axios.post("/auth", payload).then((res) => {
 
       console.log("Success!");
+      setAxiosHeaders(res.headers);
+      const redirect = !this.state.redirect
+      this.setState({redirect})
   })
       .catch(err => console.log(err));
 };
