@@ -4,13 +4,13 @@ import GlobalNav from './components/GlobalNav';
 import SplashPage from './components/SplashPage';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
-import Household from './components/Household/Household';
-import AllBills from './components/Bills/AllBills';
-import NewBill from './components/Bills/NewBill';
-import Bill from './components/Bills/Bill';
-import EditBill from './components/Bills/EditBill';
-import UserProfile from './components/User/UserProfile';
-import EditUser from './components/User/EditUser'
+import Household from './components/Household';
+import AllBills from './components/AllBills';
+import NewBill from './components/NewBill';
+import Bill from './components/Bill';
+import EditBill from './components/EditBill';
+import UserProfile from './components/UserProfile';
+import EditUser from './components/EditUser'
 import { setAxiosDefaults } from './util';
 
 // import { setAxiosDefaults } from './util';

@@ -7,10 +7,11 @@ class Api::HouseholdController < ApplicationController
     end
     
     def show
+        # @u
         @user = User.find(params[:user_id])
-        @household = @user.household.find params[:id]
+        @household = @user.household.all
     
-        render json: @household
+        render json:{user: @user, household: @household}
     end
     def create
         @household = household.create!(household_params)
@@ -30,7 +31,7 @@ class Api::HouseholdController < ApplicationController
     
     private
     def household_params
-        @household_params = params.require(:household).permit(:users)
+        @household_params = params.require(:household).permit(:user_id)
     end
 
 end
